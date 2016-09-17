@@ -1,11 +1,11 @@
 
-	// Function Declaration for GoogleAPI API (YouTube API)
-	function init() {
-		gapi.client.setApiKey("AIzaSyD1i2kQhJqH2NGeZqECn0KQwlibpE36NDc");
-		gapi.client.load("youtube", "v3", function(){
-			// yt api is ready
-		});
-	}
+// Function Declaration for Google API (YouTube API)
+function init() {
+	gapi.client.setApiKey("AIzaSyD1i2kQhJqH2NGeZqECn0KQwlibpE36NDc");
+	gapi.client.load("youtube", "v3", function(){
+		// yt api is ready
+	});
+}
  $(document).ready(function(){
 /*********************************
    VARIABLES
@@ -31,7 +31,7 @@
 	 	//API #2: YouTube Search:link
 
 	 	// prepare the request
-	 	var imdbHref = "http://www.imdb.com/title/" + details[index].id;
+	 	var imdbHref = "//www.imdb.com/title/" + details[index].id;
 	 	var searchYear = details[index].year.slice(0,4);
 	 	var searchPhrase = encodeURIComponent(details[index].title + " release date " + searchYear).replace(/%20/g, "+");
 	 	searchPhrase = searchPhrase.replace(/%3A/g, "");
@@ -71,7 +71,6 @@
 	 	});
 	 	$(window).on("resize", resetVideoHeight);
 
-		var imdbImage = 'http://img.omdbapi.com/?i=' + details[index].id + '&apikey=7fe29f8b'
 		var detailHTML = '<div data-id="' + details[index].id + '">';
 		detailHTML +='<h2>' + details[index].title + ' [' + searchYear + ']</h2>\n';
 		$info.html(detailHTML);
@@ -129,7 +128,7 @@ $submit.on("click", function(e, addorder){
 	$submit.attr("disabled", true);
 
 	// API #1: OMDB
-	var url = "http://www.omdbapi.com/?apikey=7fe29f8b&s=" + searchValue;
+	var url = "//www.omdbapi.com/?&s=" + searchValue + '&r=json';
 
 	var movieData = {
 		title: searchValue
@@ -166,7 +165,7 @@ $submit.on("click", function(e, addorder){
 				if ( data.Poster !== "N/A" ) {
 					movieHTML += '<div class="result" id="' + data.imdbID+ '">\n';
 					movieHTML += '<a href="#" class="result-link">\n';
-					var movieImage = '<img src="http://img.omdbapi.com/?i=' + data.imdbID + '&apikey=7fe29f8b" class="result-img"/>';
+					var movieImage = '<img src="//img.omdbapi.com/?i=' + data.imdbID + '&apikey=7fe29f8b" class="result-img"/>';
 					movieHTML += movieImage + '\n';
 					movieHTML += '<div class="content">' + data.Title + ' (' + data.Year + ')</div>';
 					movieHTML += '</a>\n';
