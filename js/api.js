@@ -11,21 +11,18 @@ function init() {
 	//   by design. If YouTube thinks there's a sufficient amount of
 	//   security, I think there's a sufficient amount of security.
 	//   I would like to use this project for my real portfolio
-	//   So, it needs to standout. By limiting me to a limited 
+	//   so, it needs to standout. By limiting me to a limited 
 	//   amount of APIs, I CAN do it, but
 	//   I'll just be like everyone else.
 	//
 
-	// Most secure way to pass data in this context
-	// http://stackoverflow.com/questions/23740548/how-to-pass-variables-and-data-from-php-to-javascript
 	var xReq = new XMLHttpRequest();
 	xReq.onload = function(){
-		gapi.client.setApiKey(decodeURI(this.responseText).replace(/["]/g, ""));
-		console.log(this.responseText.replace(/["]/g, ""));
+		gapi.client.setApiKey(this.responseText);
 		gapi.client.load("youtube", "v3", function(){
 		});// yt api is ready
 	}
-	xReq.open("get", "./php/api-key.php", true);
+	xReq.open("get", "./txt/api-key.txt", true);
 	xReq.send();
 }
 var omdbImgKey;
@@ -33,9 +30,9 @@ var omdbImgKey;
 // OMDB Image Key
 var yReq = new XMLHttpRequest();
 yReq.onload = function(){
-	omdbImgKey = decodeURI(this.responseText.replace(/["]/g, ""));
+	omdbImgKey = this.responseText;
 }
-yReq.open("get", "./php/omdbimg-key.php", true);
+yReq.open("get", "./txt/omdbimg-key.txt", true);
 yReq.send();
 
 $(document).ready(function(){
