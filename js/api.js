@@ -1,4 +1,8 @@
 
+
+$(document).ready(function(){
+
+	
 /*********************************
   INITIALIZE
 **********************************/
@@ -14,7 +18,7 @@ function init() {
 	//   so, it needs to standout. By limiting me to a limited 
 	//   amount of APIs, I CAN do it, but
 	//   I'll just be like everyone else.
-
+	
 	var xReq = new XMLHttpRequest();
 	xReq.onload = function(){
 		gapi.client.setApiKey(this.responseText);
@@ -24,9 +28,8 @@ function init() {
 	xReq.open("get", "./txt/api-key.txt", true);
 	xReq.send();
 }
-
-$(document).ready(function(){
-
+	
+	
 	/*********************************
 	  VARIABLES
 	**********************************/
