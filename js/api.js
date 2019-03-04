@@ -1,13 +1,8 @@
-
-
-$(document).ready(function(){
-
-	
 /*********************************
   INITIALIZE
 **********************************/
 // Function Declaration for Google API (YouTube API)
-function init() {
+/*function init() {
 	// Note: YouTube v3 API uses GET, and not POST, so I'm not 
 	//   not sure what to expect here. For the record, the 
 	//   API key is exclusive to this App and is "restricted" to
@@ -27,9 +22,10 @@ function init() {
 	};
 	xReq.open("get", "./txt/api-key.txt", true);
 	xReq.send();
-}
-	
-	
+}*/
+
+$(document).ready(function(){
+
 	/*********************************
 	  VARIABLES
 	**********************************/
@@ -72,17 +68,15 @@ function init() {
 		searchPhrase = searchPhrase.replace(/\//g, "");
 		searchPhrase = searchPhrase.replace("(", "");
 		searchPhrase = searchPhrase.replace(")", "");
-		var request = gapi.client.youtube.search.list({
+		$.get( 
+			"https://www.googleapis.com/youtube/v3/search", {
 			part: "snippet",
 			chart: "mostPopular",
 			type: "video",
 			q: searchPhrase,
 			maxResults: 1,
 			order:"viewCount"
-		});// youTube search option selections
-
-		//execute the request
-		request.execute(function(response) {
+		},(function(response) {
 			if ( response.items.length > 0 ) {
 				$(".item").remove(); 
 				var results = response.result;
@@ -108,7 +102,7 @@ function init() {
 					}]));
 				});
 			}
-		});
+		}));
 		$(window).on("resize", resetVideoHeight);
 
 		
